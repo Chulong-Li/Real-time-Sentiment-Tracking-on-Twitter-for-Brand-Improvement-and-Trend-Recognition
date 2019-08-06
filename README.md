@@ -4,7 +4,7 @@
 1. Extracting streaming Twitter Data
 2. Preprocessing data and storing in MySQL
 3. Perform data analysis to explore the insights (In Progress)
-4. Connect with real-time Dash-Plotl, D3.js or Tableau Public for data visualization (In Progress)
+4. Connect with real-time Dash-Plotl, D3.js or Tableau Public for data visualization based on time series (In Progress)
 5. Publish the visualization on github.io (In Progress)
 
 ## Second Version (In the near future)

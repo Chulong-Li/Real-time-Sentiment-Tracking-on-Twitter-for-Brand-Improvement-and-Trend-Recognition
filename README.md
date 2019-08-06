@@ -1,9 +1,12 @@
 # Twitter-Data-Sentiment-Analysis
 
 ## Installation
-'''
+```
 pip install -r requirements.txt
-'''
+```
+
+## Get started
+Run Main.jpynt
 
 
 ## 

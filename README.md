@@ -17,5 +17,20 @@ Build ETL pipelines based on stream processing using Kafka, and fully automate E
 ```
 pip install -r requirements.txt
 ```
-### Get started
-Run ```Main.ipynb``` on Jupter Notebook. (Note: Because it extracts streaming data from Twitter, you need to manually press STOP button to stop the streaming process.)
+### Set-up
+Create a file called ```credentials.py``` and fill the context in below
+```
+# Go to http://apps.twitter.com and create an app.
+# The consumer key and secret will be generated for you
+API_KEY = "XXXXXXXXXXXXXX"
+API_SECRET_KEY = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+
+# After the step above, you will be redirected to your app's page.
+# Create an access token under the the "Your access token" section
+ACCESS_TOEKN = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+ACCESS_TOKEN_SECRET = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+```
+
+### Run
+Run ```Main.ipynb``` to start scraping data on Jupter Notebook. (Note: Because it extracts streaming data from Twitter, you need to manually press STOP button to stop the streaming process.)
+Run ```Analysis.ipynb``` to perform data analysis and visualization

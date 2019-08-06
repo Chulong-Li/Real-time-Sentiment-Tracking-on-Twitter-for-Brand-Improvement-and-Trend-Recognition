@@ -17,4 +17,4 @@ Build ETL pipelines based on stream processing using Kafka, and fully automate E
 pip install -r requirements.txt
 ```
 ### Get started
-Run Main.ipynb on Jupter Notebook. (Note: Because it extracts streaming data from Twitter, you need to manually press STOP button to stop the streaming process.)
+Run ```Main.ipynb``` on Jupter Notebook. (Note: Because it extracts streaming data from Twitter, you need to manually press STOP button to stop the streaming process.)

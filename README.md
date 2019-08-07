@@ -1,17 +1,20 @@
-# Twitter Sentiment Analysis for Brand Recognition
+# Twitter Sentiment Analysis for Brand Improvement
 
 ## Inspiration
 The solution for evaluating Twitter data to perform better business decisions is to keep tracking all relevant Twitter content about a brand in real-time and perform analysis as topics or issues emerge. By monitoring brand mentions on Twitter, brands could inform enagement and deliver better experiences for their customers across the world.
 
-## Technical Approach
+## Technical Approach (~ Aug 15)
 1. Extracting streaming Twitter Data
 2. Preprocessing data and storing in MySQL
 3. Perform data analysis to explore the insights (In Progress)
 4. Connect with real-time Plotly|Dash for data visualization based on time series (In Progress)
 5. Publish the visualization on github.io (In Progress)
 
-## Second Version ( ~ Aug 20)
+## Second Version ( ~ Aug 22)
 Build ETL pipelines based on stream processing using Kafka, and fully automate ETL using automated data management
+
+## Demo for Sentiment Tracking on Airbnb Brand
+![Sentiment Tracking](https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/demo)
 
 ## Get Started
 ### Pre-installation

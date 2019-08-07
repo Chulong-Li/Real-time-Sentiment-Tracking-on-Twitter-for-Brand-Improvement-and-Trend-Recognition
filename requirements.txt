@@ -5,3 +5,5 @@ matplotlib
 seaborn
 textblob
 mysql-connector-python
+geopy
+plotly

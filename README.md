@@ -33,5 +33,6 @@ ACCESS_TOKEN_SECRET = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 ```
 
 ### Run
-Run ```Main.ipynb``` to start scraping data on Jupter Notebook. (Note: Because it extracts streaming data from Twitter, you need to manually press STOP button to stop the streaming process.)
-Run ```Analysis.ipynb``` to perform data analysis and visualization
+Run ```Main.ipynb``` to start scraping data on Jupter Notebook. (Note: Since streaming process is always on, press STOP button to finsih.)
+
+Run ```Analysis.ipynb``` to perform data analysis and visualization.

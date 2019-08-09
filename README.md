@@ -23,9 +23,9 @@ Build ETL pipelines based on stream processing using Kafka, and perform sentimen
 ### Sentiment Tracking on Airbnb Brand
 <img src="https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/demo" alt="Sentiment Tracking" width="100%" height="100%">
 ### Tracking hot topic trends
-<img src="https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Figures/LineChart.png" alt="LineChart" width="100%" height="100%">
-<img src="https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Figures/FreqDist.png" alt="FreqDist" width="100%" height="100%">
-<img src="https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Figures/GeoDist.png" alt="GeoDist" width="100%" height="100%">
+<img src="https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Figures/LineChart.png" alt="LineChart" width="90%" height="40%">
+<img src="https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Figures/FreqDist.png" alt="FreqDist" width="90%" height="40%">
+<img src="https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Figures/GeoDist.png" alt="GeoDist" width="90%" height="90%">
 ## Get Started
 ### Pre-installation
 ```

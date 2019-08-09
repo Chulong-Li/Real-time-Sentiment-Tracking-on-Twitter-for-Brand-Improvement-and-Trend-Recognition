@@ -4,28 +4,29 @@ Dive into the industry and get my hands dirty.
 ## Inspiration
 The solution for evaluating Twitter data to perform better business decisions is to keep tracking all relevant Twitter content about a brand in real-time and perform analysis as topics or issues emerge. By monitoring brand mentions on Twitter, brands could inform enagement and deliver better experiences for their customers across the world.
 
-
 ## Interesting facts from exploratory data analysis
 - Less 0.01% users will push tweets with their locations.
 - Tweets grabbed from streaming data won't have more than 0 LIKE or RETWEET, since you have already captured them even before others press buttons :p
 - More than 65.6% users will write the locations in their profile, although very few of them don't live on Earth according to that fact.
 - The numbers of positive and negative tweets are relatively close and stay low compared with neural tweet number. Unless emergency events happen, lines won't fluctuate acutely.
 
-
-## Technical Approach (~ Aug 15)
+## Technical Approach v1 (~ Aug 15)
 1. Extract streaming Twitter Data, preprocess data in Python, and load data into MySQL for storage
 2. Perform exploratory data analysis with Seaborn to explore the insights
 3. Connect with Plotly & Dash for real-time interactive front-end web app based on time series (In Progress)
 4. Publish the visualization on github.io (In Progress)
 
-
 ## Next Version v2 ( ~ Aug 22)
 Build ETL pipelines based on stream processing using Kafka, and perform sentiment analysis using Spark Streaming
 
-
-## Demo for Sentiment Tracking on Airbnb Brand
+## Quick Demo 
+### Sentiment Tracking on Airbnb Brand
 ![Sentiment Tracking](https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/demo)
-
+<img src="https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/demo" alt="Sentiment Tracking" width="70%" height="70%">
+### Tracking hot topic trends
+![LineChart](https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Figures/LineChart.png)
+![FreqDist](https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Figures/FreqDist.png)
+![GeoDist](https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Figures/GeoDist.png)
 
 ## Get Started
 ### Pre-installation
@@ -61,3 +62,6 @@ Run ```Analysis.ipynb``` to perform data analysis for brand improvement.
 Run ```Analysis_for_Topic_Trend.ipynb``` to track hottest topic trends on Twitter
 
 Note: Since streaming process is always on, press STOP button to finsih.
+
+## What's next?
+In the future, I'll write a tech blog on Towards Data Science to elaborate details under the hood. So stay tuned.

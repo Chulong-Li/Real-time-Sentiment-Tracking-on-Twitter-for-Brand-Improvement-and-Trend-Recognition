@@ -25,6 +25,9 @@ Build ETL pipelines based on stream processing using Kafka, and perform sentimen
 <img src="https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/demo" alt="Sentiment Tracking" width="100%" height="100%">
 
 ### Tracking hot topic trends
+Check the interactive data [visuilization](https://nbviewer.jupyter.org/github/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Analysis_for_Topic_Trend.ipynb) on nbviewer
+
+
 <img src="https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Figures/LineChart.png" alt="LineChart" width="1000" height="500">
 <img src="https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Figures/FreqDist.png" alt="FreqDist" width="1000" height="500">
 <img src="https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Figures/GeoDist.png" alt="GeoDist" width="90%" height="90%">
@@ -49,12 +52,12 @@ ACCESS_TOEKN = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 ACCESS_TOKEN_SECRET = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 ```
 
-Create local MySQL Database with info below
+Create local MySQL database with info below
 ```
 host="localhost"
 user="root"
 passwd="password"
-database_table="TwitterDB\"
+database_table="TwitterDB"
 ```
 ### Run
 Run ```Main.ipynb``` to start scraping data on Jupter Notebook. 

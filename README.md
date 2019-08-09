@@ -12,9 +12,9 @@ The solution for evaluating Twitter data to perform better business decisions is
 
 ## Technical Approach v1 (~ Aug 15)
 1. Extract streaming Twitter Data, preprocess data in Python, and load data into MySQL for storage
-2. Perform exploratory data analysis with Seaborn to explore the insights
-3. Connect with Plotly & Dash for real-time interactive front-end web app based on time series (In Progress)
-4. Publish the visualization on github.io (In Progress)
+2. Perform exploratory data analysis with Pandas & Seaborn to explore the insights
+3. Connect with Plotly for real-time interactive dashboard based on time series
+4. Deploy the front-end web app using Dash on Heroku (In Progress)
 
 ## Next Version v2 ( ~ Aug 22)
 Build ETL pipelines based on stream processing using Kafka, and perform sentiment analysis using Spark Streaming
@@ -24,13 +24,11 @@ Build ETL pipelines based on stream processing using Kafka, and perform sentimen
 ### Sentiment Tracking on Airbnb Brand
 <img src="https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/demo" alt="Sentiment Tracking" width="100%" height="100%">
 
-### Tracking hot topic trends
-Check the interactive data [visuilization](https://nbviewer.jupyter.org/github/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Analysis_for_Topic_Trend.ipynb) on nbviewer
+### Real-time tracking topic trends
+Try this awesome interactive [data visuilization](https://nbviewer.jupyter.org/github/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Trend_Analysis_Complex.ipynb) on nbviewer.
 
 
-<img src="https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Figures/LineChart.png" alt="LineChart" width="1000" height="500">
-<img src="https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Figures/FreqDist.png" alt="FreqDist" width="1000" height="500">
-<img src="https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Figures/GeoDist.png" alt="GeoDist" width="90%" height="90%">
+<img src="https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Figures/Complex" alt="Complex Dashboard" width="100%" height="100%">
 
 ## Get Started
 
@@ -59,14 +57,27 @@ user="root"
 passwd="password"
 database_table="TwitterDB"
 ```
+
+### Track Word Setting (Optional)
+You can change the TRACK_WORDS in ```settings.py``` into any word, brand, or topc you're interested.
+
+### Stream the complex visualization
+To perform streaming update on dashboard, you need to deploy all settings above.
+
 ### Run
 Run ```Main.ipynb``` to start scraping data on Jupter Notebook. 
 
-Run ```Analysis.ipynb``` to perform data analysis for brand improvement.
+Run ```Analysis.ipynb``` to perform data analysis for brand improvement after ```Main.ipynb``` starts running.
 
-Run ```Analysis_for_Topic_Trend.ipynb``` to track hottest topic trends on Twitter
+Run ```Trend_Analysis_Complex``` to track topic trends on Twitter after ```Main.ipynb``` starts running.
 
 Note: Since streaming process is always on, press STOP button to finsih.
+
+## Challenges
+- Unstructured tweet texts may contain messy code and emoji characters
+- Some brands may take a long time to collection enough data to perform useful insights since they target specify groups of people.
+- Plotly doesn't have well-document on reference making customize dashboard much harder.
+- More challenges on the way, but Google, StackOverFlow, Towards Data Science, and GitHub will always be your best friends.
 
 ## What's next?
 In the future, I'll write a tech blog on Towards Data Science to elaborate details under the hood. So stay tuned.

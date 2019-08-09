@@ -28,7 +28,7 @@ Build ETL pipelines based on stream processing using Kafka, and perform sentimen
 Try this awesome interactive [data visuilization](https://nbviewer.jupyter.org/github/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Trend_Analysis_Complex.ipynb) on nbviewer.
 
 
-<img src="https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Figures/Complex" alt="Complex Dashboard" width="100%" height="100%">
+<img src="https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Figures/Complex.png" alt="Complex Dashboard" width="50%" height="50%">
 
 ## Get Started
 

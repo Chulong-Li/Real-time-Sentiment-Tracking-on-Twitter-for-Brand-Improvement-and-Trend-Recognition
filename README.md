@@ -28,7 +28,9 @@ Build ETL pipelines based on stream processing using Kafka, and perform sentimen
 <img src="https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Figures/LineChart.png" alt="LineChart" width="1000" height="500">
 <img src="https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Figures/FreqDist.png" alt="FreqDist" width="1000" height="500">
 <img src="https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Figures/GeoDist.png" alt="GeoDist" width="90%" height="90%">
+
 ## Get Started
+
 ### Pre-installation
 ```
 pip install -r requirements.txt

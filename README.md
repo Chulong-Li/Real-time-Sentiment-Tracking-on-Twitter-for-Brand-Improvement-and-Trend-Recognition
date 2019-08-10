@@ -59,10 +59,10 @@ database_table="TwitterDB"
 ```
 
 ### Track Word Setting (Optional)
-You can change the TRACK_WORDS in ```settings.py``` into any word, brand, or topc you're interested.
+You can change the ```TRACK_WORDS``` in ```settings.py``` into any word, brand, or topic you're interested.
 
 ### Stream the complex visualization
-To perform streaming update on dashboard, you need to deploy all settings above.
+To perform streaming processing on dashboard, you need to deploy all settings above as well as let ```Main.ipynb``` keep listening.
 
 ### Run
 Run ```Main.ipynb``` to start scraping data on Jupter Notebook. 

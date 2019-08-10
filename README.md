@@ -1,4 +1,4 @@
-# Twitter Sentiment Analysis for Brand Improvement
+# Real-time Twitter Sentiment Analysis for Brand Improvement and Topic Tracking
 Dive into the industry and get my hands dirty.
 
 ## Inspiration
@@ -75,8 +75,8 @@ Note: Since streaming process is always on, press STOP button to finsih.
 
 ## Challenges
 - Unstructured tweet texts may contain messy code and emoji characters
-- Some brands may take a long time to collection enough data to perform useful insights since they target specify groups of people
-- Some hot words will uncover useful insights only after being tracked more than an hour
+- Some brands may take a long time to collection enough data to perform analysis on issue emerging since they target specify groups of people
+- Some hot words will uncover useful insights only after appearing more than 10k times on tweets
 - Plotly doesn't have well-document on reference making customize dashboard much harder
 - More challenges on the way, but Google, StackOverFlow, Towards Data Science, and GitHub will always be your best friends
 

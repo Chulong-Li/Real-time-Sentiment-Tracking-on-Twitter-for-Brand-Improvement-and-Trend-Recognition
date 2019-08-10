@@ -22,13 +22,13 @@ Build ETL pipelines based on stream processing using Kafka, and perform sentimen
 ## Quick Demo 
 
 ### Sentiment Tracking on Airbnb Brand
-<img src="https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/demo" alt="Sentiment Tracking" width="100%" height="100%">
+<img src="https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/demo" alt="Sentiment Tracking" width="70%" height="70%">
 
 ### Real-time tracking topic trends
 Try this awesome interactive [data visuilization](https://nbviewer.jupyter.org/github/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Trend_Analysis_Complex.ipynb) on nbviewer.
 
 
-<img src="https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Figures/Complex.png" alt="Complex Dashboard" width="50%" height="50%">
+<img src="https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Figures/Complex.png" alt="Complex Dashboard" width="70%" height="70%">
 
 ## Get Started
 
@@ -75,9 +75,10 @@ Note: Since streaming process is always on, press STOP button to finsih.
 
 ## Challenges
 - Unstructured tweet texts may contain messy code and emoji characters
-- Some brands may take a long time to collection enough data to perform useful insights since they target specify groups of people.
-- Plotly doesn't have well-document on reference making customize dashboard much harder.
-- More challenges on the way, but Google, StackOverFlow, Towards Data Science, and GitHub will always be your best friends.
+- Some brands may take a long time to collection enough data to perform useful insights since they target specify groups of people
+- Some hot words will uncover useful insights only after being tracked more than an hour
+- Plotly doesn't have well-document on reference making customize dashboard much harder
+- More challenges on the way, but Google, StackOverFlow, Towards Data Science, and GitHub will always be your best friends
 
 ## What's next?
 In the future, I'll write a tech blog on Towards Data Science to elaborate details under the hood. So stay tuned.

@@ -1,5 +1,5 @@
 # Real-time Twitter Sentiment Analysis for Brand Improvement and Topic Tracking
-Dive into the industry and get my hands dirty.
+Dive into the industry and get my hands dirty. That's why I start this self-motivated individual project.
 
 ## Inspiration
 The solution for evaluating Twitter data to perform better business decisions is to keep tracking all relevant Twitter content about a brand in real-time and perform analysis as topics or issues emerge. By monitoring brand mentions on Twitter, brands could inform enagement and deliver better experiences for their customers across the world.

@@ -25,7 +25,7 @@ Build ETL pipelines based on stream processing using Kafka, and perform sentimen
 <img src="https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/demo" alt="Sentiment Tracking" width="70%" height="70%">
 
 ### Real-time tracking topic trends
-Try this awesome interactive [data visuilization](https://nbviewer.jupyter.org/github/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Trend_Analysis_Complex.ipynb) on nbviewer.
+Try this awesome interactive [data visuilization](https://nbviewer.jupyter.org/github/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Trend_Analysis_Complex.ipynb) in Jupyter Notebook and [web app (In Progress)](https://twitter-analysis-web-app.herokuapp.com).
 
 
 <img src="https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Figures/Complex.png" alt="Complex Dashboard" width="70%" height="70%">

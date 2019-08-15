@@ -161,10 +161,15 @@ app.layout = html.Div([
                         showscale=False,
                         geo = 'geo'
                     )
-                ]
+                ],
+                'layout': {
+                    'title': "Real-time tracking '{}' mentions on Twitter UTC".format(settings.TRACK_WORDS[0]),
+                    'geo':{'scope':'usa'}
+                }
             }
         ),
-    ], style={'display': 'inline-block', 'width': '49%', 'columnCount': 2}),
+    ]),
+    #, style={'columnCount': 1}
 
     html.Div([
         html.Label('Slider'),

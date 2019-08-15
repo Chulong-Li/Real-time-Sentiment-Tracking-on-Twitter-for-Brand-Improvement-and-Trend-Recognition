@@ -76,6 +76,14 @@ fd = pd.DataFrame(fdist.most_common(30), columns = ["Word","Frequency"]).drop([0
 server = app.server
 
 app.layout = html.Div([
+    html.Div(
+        className='section',
+        children=[
+            html.H2('Real-time Twitter Sentiment Analysis for Brand Improvement and Topic Tracking', className='landing-text')
+        ],
+        style={'padding': '0px 20px 20px 20px'}
+    ),
+
     html.Div([
         html.Div([
             dcc.Dropdown(
@@ -140,34 +148,38 @@ app.layout = html.Div([
     ]),
 
     html.Div([
-        dcc.Graph(
-            id='x-time-series',
-            figure = {
-                'data':[
-                    go.Bar(x=fd["Word"], y=fd["Frequency"], name="Freq Dist")
-                ]
-            }        
-        ),
-        dcc.Graph(
-            id='y-time-series',
-            figure = {
-                'data':[
-                    go.Choropleth(
-                        locations=geo_dist['State'], # Spatial coordinates
-                        z = geo_dist['Log Num'].astype(float), # Data to be color-coded
-                        locationmode = 'USA-states', # set of locations match entries in `locations`
-                        colorscale = "Blues",
-                        text=geo_dist['text'], # hover text
-                        showscale=False,
-                        geo = 'geo'
-                    )
-                ],
-                'layout': {
-                    'title': "Real-time tracking '{}' mentions on Twitter UTC".format(settings.TRACK_WORDS[0]),
-                    'geo':{'scope':'usa'}
+        html.Div([
+            dcc.Graph(
+                id='x-time-series',
+                figure = {
+                    'data':[
+                        go.Bar(x=fd["Word"], y=fd["Frequency"], name="Freq Dist")
+                    ]
+                }        
+            )
+        ], style={'width': '49%', 'display': 'inline-block', 'padding': '0 20'}),
+        html.Div([
+            dcc.Graph(
+                id='y-time-series',
+                figure = {
+                    'data':[
+                        go.Choropleth(
+                            locations=geo_dist['State'], # Spatial coordinates
+                            z = geo_dist['Log Num'].astype(float), # Data to be color-coded
+                            locationmode = 'USA-states', # set of locations match entries in `locations`
+                            colorscale = "Blues",
+                            text=geo_dist['text'], # hover text
+                            showscale=False,
+                            geo = 'geo'
+                        )
+                    ],
+                    'layout': {
+                        'title': "Real-time tracking '{}' mentions on Twitter UTC".format(settings.TRACK_WORDS[0]),
+                        'geo':{'scope':'usa'}
+                    }
                 }
-            }
-        ),
+            )
+        ], style={'display': 'inline-block', 'width': '49%'})
     ]),
     #, style={'columnCount': 1}
 
@@ -179,8 +191,65 @@ app.layout = html.Div([
             marks={i: 'Label {}'.format(i) if i == 1 else str(i) for i in range(1, 6)},
             value=5
         )
-    ])    
+    ], style={ 'padding': '0px 20px 20px 20px'}),
 
+
+    # ABOUT ROW
+    html.Div(
+        className='row',
+        children=[
+            html.Div(
+                className='three columns',
+                children=[
+                    html.P(
+                    'Data extracted from:'
+                    ),
+                    html.A(
+                        'Twitter API',
+                        href='https://developer.twitter.com'
+                    )                    
+                ]
+            ),
+            html.Div(
+                className='three columns',
+                children=[
+                    html.P(
+                    'Code avaliable at:'
+                    ),
+                    html.A(
+                        'GitHub',
+                        href='https://github.com/Chulong-Li/Real-time-Sentiment-Tracking-on-Twitter-for-Brand-Improvement-and-Trend-Recognition'
+                    )                    
+                ]
+            ),
+            html.Div(
+                className='three columns',
+                children=[
+                    html.P(
+                    'Made with:'
+                    ),
+                    html.A(
+                        'Dash / Plot.ly',
+                        href='https://plot.ly/dash/'
+                    )                    
+                ]
+            ),
+            html.Div(
+                className='three columns',
+                children=[
+                    html.P(
+                    'Developer:'
+                    ),
+                    html.A(
+                        'Chulong Li',
+                        href='https://www.linkedin.com/in/chulong-li/'
+                    )                    
+                ]
+            )                                                          
+        ], style={
+            'padding': 40
+        }
+    )
 ])
 
 

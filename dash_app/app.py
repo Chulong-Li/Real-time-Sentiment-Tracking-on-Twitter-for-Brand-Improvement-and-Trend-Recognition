@@ -6,6 +6,7 @@ import plotly.graph_objs as go
 import settings
 import itertools
 import math
+import base64
 
 import re
 import nltk
@@ -14,6 +15,7 @@ nltk.download('stopwords')
 from nltk.probability import FreqDist
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
+
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
@@ -72,19 +74,15 @@ for w in tokenized_word:
 fdist = FreqDist(filtered_sent)
 fd = pd.DataFrame(fdist.most_common(30), columns = ["Word","Frequency"]).drop([0]).reindex()
 
-
 server = app.server
 
-app.layout = html.Div([
-    html.Div(
-        className='section',
-        children=[
-            html.H2('Real-time Twitter Sentiment Analysis for Brand Improvement and Topic Tracking', className='landing-text')
-        ],
-        style={'padding': '0px 20px 20px 20px'}
-    ),
+app.layout = html.Div(children=[
+    html.H2('Real-time Twitter Sentiment Analysis for Brand Improvement and Topic Tracking', style={
+        'textAlign': 'center'
+    }),
 
-    html.Div([
+    html.Div(children=[
+        
         html.Div([
             dcc.Dropdown(
                 id='crossfilter-xaxis-column',
@@ -119,7 +117,7 @@ app.layout = html.Div([
         'padding': '10px 5px'
     }),
 
-    html.Div([
+    html.Div(children=[
         dcc.Graph(
             id='crossfilter-indicator-scatter',
             figure={
@@ -128,33 +126,51 @@ app.layout = html.Div([
                         x=time_series,
                         y=result["Num of '{}' mentions".format(settings.TRACK_WORDS[0])][result['polarity']==0].reset_index(drop=True),
                         name="Neural",
-                        opacity=0.8
+                        opacity=0.8,
+                        mode='lines',
+                        line=dict(width=0.5, color='rgb(131, 90, 241)'),
+                        stackgroup='one' 
                     ),
                     go.Scatter(
                         x=time_series,
-                        y=result["Num of '{}' mentions".format(settings.TRACK_WORDS[0])][result['polarity']==-1].reset_index(drop=True),
+                        y=result["Num of '{}' mentions".format(settings.TRACK_WORDS[0])][result['polarity']==-1].reset_index(drop=True).apply(lambda x: -x),
                         name="Negative",
-                        opacity=0.8
+                        opacity=0.8,
+                        mode='lines',
+                        line=dict(width=0.5, color='rgb(111, 231, 219)'),
+                        stackgroup='two' 
                     ),
                     go.Scatter(
                         x=time_series,
                         y=result["Num of '{}' mentions".format(settings.TRACK_WORDS[0])][result['polarity']==1].reset_index(drop=True),
                         name="Positive",
-                        opacity=0.8
+                        opacity=0.8,
+                        mode='lines',
+                        line=dict(width=0.5, color='rgb(184, 247, 212)'),
+                        stackgroup='three' 
                     )
                 ]
             }
         )
     ]),
 
-    html.Div([
+    html.Div(children=[
         html.Div([
             dcc.Graph(
                 id='x-time-series',
                 figure = {
                     'data':[
-                        go.Bar(x=fd["Word"], y=fd["Frequency"], name="Freq Dist")
-                    ]
+                        go.Bar(
+                            x=fd["Word"], 
+                            y=fd["Frequency"], 
+                            name="Freq Dist",
+                            opacity=0.6, 
+                            marker_color='rgb(131, 90, 241)',
+                            orientation='h')
+                    ],
+                    'layout':{
+                        'hovermode':"closest"
+                    }
                 }        
             )
         ], style={'width': '49%', 'display': 'inline-block', 'padding': '0 20'}),
@@ -167,21 +183,24 @@ app.layout = html.Div([
                             locations=geo_dist['State'], # Spatial coordinates
                             z = geo_dist['Log Num'].astype(float), # Data to be color-coded
                             locationmode = 'USA-states', # set of locations match entries in `locations`
-                            colorscale = "Blues",
+                            #colorscale = "Blues",
                             text=geo_dist['text'], # hover text
-                            showscale=False,
-                            geo = 'geo'
+                            geo = 'geo',
+                            colorbar_title = "Number in Log2",
+                            marker_line_color='white',
+                            colorscale = ["#fdf7ff", "#835af1"],
+                            #autocolorscale=False,
+                            #reversescale=True,
                         )
                     ],
                     'layout': {
-                        'title': "Real-time tracking '{}' mentions on Twitter UTC".format(settings.TRACK_WORDS[0]),
+                        'title': "Real-Time Tweet Geo-distribution".format(settings.TRACK_WORDS[0]),
                         'geo':{'scope':'usa'}
                     }
                 }
             )
         ], style={'display': 'inline-block', 'width': '49%'})
     ]),
-    #, style={'columnCount': 1}
 
     html.Div([
         html.Label('Slider'),
@@ -246,11 +265,9 @@ app.layout = html.Div([
                     )                    
                 ]
             )                                                          
-        ], style={
-            'padding': 40
-        }
+        ]
     )
-])
+], style={'padding': '20px'})
 
 
 if __name__ == '__main__':

@@ -7,6 +7,7 @@ import settings
 import itertools
 import math
 import base64
+from flask import Flask
 
 import re
 import nltk
@@ -15,11 +16,13 @@ nltk.download('stopwords')
 from nltk.probability import FreqDist
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
+from textblob import TextBlob
 
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+
 
 df = pd.read_csv('sample_data.csv')
 df['created_at'] = pd.to_datetime(df['created_at'])
@@ -69,52 +72,20 @@ tokenized_word = word_tokenize(content)
 stop_words=set(stopwords.words("english"))
 filtered_sent=[]
 for w in tokenized_word:
-    if w not in stop_words:
+    if (w not in stop_words) and (len(w) >= 3):
         filtered_sent.append(w)
 fdist = FreqDist(filtered_sent)
-fd = pd.DataFrame(fdist.most_common(30), columns = ["Word","Frequency"]).drop([0]).reindex()
-
+fd = pd.DataFrame(fdist.most_common(16), columns = ["Word","Frequency"]).drop([0]).reindex()
+fd['Polarity'] = fd['Word'].apply(lambda x: TextBlob(x).sentiment.polarity)
+fd['Marker_Color'] = fd['Polarity'].apply(lambda x: 'rgba(255, 50, 50, 0.6)' if x < -0.5 else \
+        ('rgba(184, 247, 212, 0.6)' if x > 0.5 else 'rgba(131, 90, 241, 0.6)'))
+fd['Line_Color'] = fd['Polarity'].apply(lambda x: 'rgba(255, 50, 50, 1)' if x < -0.5 else \
+        ('rgba(184, 247, 212, 1)' if x > 0.5 else 'rgba(131, 90, 241, 1)'))
 server = app.server
 
 app.layout = html.Div(children=[
     html.H2('Real-time Twitter Sentiment Analysis for Brand Improvement and Topic Tracking', style={
         'textAlign': 'center'
-    }),
-
-    html.Div(children=[
-        
-        html.Div([
-            dcc.Dropdown(
-                id='crossfilter-xaxis-column',
-                options=[{'label': i, 'value': i} for i in ['Linear', 'Log']],
-                value='Fertility rate, total (births per woman)'
-            ),
-            dcc.RadioItems(
-                id='crossfilter-xaxis-type',
-                options=[{'label': i, 'value': i} for i in ['Linear', 'Log']],
-                value='Linear',
-                labelStyle={'display': 'inline-block'}
-            )
-        ],
-        style={'width': '49%', 'display': 'inline-block'}),
-
-        html.Div([
-            dcc.Dropdown(
-                id='crossfilter-yaxis-column',
-                options=[{'label': i, 'value': i} for i in ['Linear', 'Log']],
-                value='Life expectancy at birth, total (years)'
-            ),
-            dcc.RadioItems(
-                id='crossfilter-yaxis-type',
-                options=[{'label': i, 'value': i} for i in ['Linear', 'Log']],
-                value='Linear',
-                labelStyle={'display': 'inline-block'}
-            )
-        ], style={'width': '49%', 'float': 'right', 'display': 'inline-block'})
-    ], style={
-        'borderBottom': 'thin lightgrey solid',
-        'backgroundColor': 'rgb(250, 250, 250)',
-        'padding': '10px 5px'
     }),
 
     html.Div(children=[
@@ -125,7 +96,7 @@ app.layout = html.Div(children=[
                     go.Scatter(
                         x=time_series,
                         y=result["Num of '{}' mentions".format(settings.TRACK_WORDS[0])][result['polarity']==0].reset_index(drop=True),
-                        name="Neural",
+                        name="Neutrals",
                         opacity=0.8,
                         mode='lines',
                         line=dict(width=0.5, color='rgb(131, 90, 241)'),
@@ -134,16 +105,16 @@ app.layout = html.Div(children=[
                     go.Scatter(
                         x=time_series,
                         y=result["Num of '{}' mentions".format(settings.TRACK_WORDS[0])][result['polarity']==-1].reset_index(drop=True).apply(lambda x: -x),
-                        name="Negative",
+                        name="Negatives",
                         opacity=0.8,
                         mode='lines',
-                        line=dict(width=0.5, color='rgb(111, 231, 219)'),
+                        line=dict(width=0.5, color='rgb(255, 50, 50)'),
                         stackgroup='two' 
                     ),
                     go.Scatter(
                         x=time_series,
                         y=result["Num of '{}' mentions".format(settings.TRACK_WORDS[0])][result['polarity']==1].reset_index(drop=True),
-                        name="Positive",
+                        name="Positives",
                         opacity=0.8,
                         mode='lines',
                         line=dict(width=0.5, color='rgb(184, 247, 212)'),
@@ -160,13 +131,18 @@ app.layout = html.Div(children=[
                 id='x-time-series',
                 figure = {
                     'data':[
-                        go.Bar(
-                            x=fd["Word"], 
-                            y=fd["Frequency"], 
-                            name="Freq Dist",
-                            opacity=0.6, 
-                            marker_color='rgb(131, 90, 241)',
-                            orientation='h')
+                        go.Bar(                          
+                            x=fd["Frequency"].loc[::-1],
+                            y=fd["Word"].loc[::-1], 
+                            name="Neutrals", 
+                            orientation='h',
+                            marker_color=fd['Marker_Color'].loc[::-1].to_list(),
+                            marker=dict(
+                                line=dict(
+                                    color=fd['Line_Color'].loc[::-1].to_list(),
+                                    width=1),
+                                ),
+                        )
                     ],
                     'layout':{
                         'hovermode':"closest"
@@ -186,7 +162,7 @@ app.layout = html.Div(children=[
                             #colorscale = "Blues",
                             text=geo_dist['text'], # hover text
                             geo = 'geo',
-                            colorbar_title = "Number in Log2",
+                            colorbar_title = "Num in Log2",
                             marker_line_color='white',
                             colorscale = ["#fdf7ff", "#835af1"],
                             #autocolorscale=False,
@@ -201,16 +177,6 @@ app.layout = html.Div(children=[
             )
         ], style={'display': 'inline-block', 'width': '49%'})
     ]),
-
-    html.Div([
-        html.Label('Slider'),
-        dcc.Slider(
-            min=0,
-            max=9,
-            marks={i: 'Label {}'.format(i) if i == 1 else str(i) for i in range(1, 6)},
-            value=5
-        )
-    ], style={ 'padding': '0px 20px 20px 20px'}),
 
 
     # ABOUT ROW

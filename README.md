@@ -2,6 +2,7 @@
 Dive into the industry and get my hands dirty. That's why I start this self-motivated individual project.
 
 <img src="https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Figures/Web_App.png" alt="Sentiment Tracking" width="70%" height="70%">
+
 Try this awesome [web app](https://twitter-analysis-web-app.herokuapp.com) on Heroku server. Note: To run it with streaming data, you need to deploy it locally.
 
 ## Inspiration

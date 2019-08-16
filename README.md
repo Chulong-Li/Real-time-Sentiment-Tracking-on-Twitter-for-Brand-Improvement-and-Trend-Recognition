@@ -10,14 +10,16 @@ The solution for evaluating Twitter data to perform better business decisions is
 - More than 65.6% users will write the locations in their profile, although very few of them don't live on Earth according to that fact.
 - The numbers of positive and negative tweets are relatively close and stay low compared with neural tweet number. Unless emergency events happen, lines won't fluctuate acutely.
 
-## Technical Approach v1 (~ Aug 15)
+## Technical Approach - Version.2 ( ~ Aug 22)
+1. Build ETL pipelines based on stream processing using Kafka (In Progress)
+2. perform sentiment analysis using Spark Streaming (In Progress)
+
+## Orignal Development - Version.1 (Done)
 1. Extract streaming Twitter Data, preprocess data in Python, and load data into MySQL for storage
 2. Perform exploratory data analysis with Pandas & Seaborn to explore the insights
 3. Connect with Plotly for real-time interactive dashboard based on time series
-4. Deploy the front-end web app using Dash on Heroku (In Progress)
+4. Deploy the front-end web app using Dash on Heroku (Note: Dyno of Heroku itself can't allow streaming data, which needs to add further cluster to enable stream processing)
 
-## Next Version v2 ( ~ Aug 22)
-Build ETL pipelines based on stream processing using Kafka, and perform sentiment analysis using Spark Streaming
 
 ## Quick Demo 
 
@@ -25,7 +27,7 @@ Build ETL pipelines based on stream processing using Kafka, and perform sentimen
 <img src="https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/demo" alt="Sentiment Tracking" width="70%" height="70%">
 
 ### Real-time tracking topic trends
-Try this awesome interactive [data visuilization](https://nbviewer.jupyter.org/github/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Trend_Analysis_Complex.ipynb) in Jupyter Notebook and [web app (In Progress)](https://twitter-analysis-web-app.herokuapp.com).
+Try this awesome interactive [web app](https://twitter-analysis-web-app.herokuapp.com) using local data and [data visuilization](https://nbviewer.jupyter.org/github/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Trend_Analysis_Complex.ipynb) in Jupyter Notebook.
 
 
 <img src="https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Figures/Complex.png" alt="Complex Dashboard" width="70%" height="70%">

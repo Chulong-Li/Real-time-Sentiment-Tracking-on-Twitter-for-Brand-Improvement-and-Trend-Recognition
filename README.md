@@ -1,6 +1,9 @@
 # Real-time Twitter Sentiment Analysis for Brand Improvement and Topic Tracking
 Dive into the industry and get my hands dirty. That's why I start this self-motivated individual project.
 
+<img src="https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Figures/Web_App.png" alt="Sentiment Tracking" width="70%" height="70%">
+Try this awesome [web app](https://twitter-analysis-web-app.herokuapp.com) on Heroku server. Note: To run it with streaming data, you need to deploy it locally.
+
 ## Inspiration
 The solution for evaluating Twitter data to perform better business decisions is to keep tracking all relevant Twitter content about a brand in real-time and perform analysis as topics or issues emerge. By monitoring brand mentions on Twitter, brands could inform enagement and deliver better experiences for their customers across the world.
 
@@ -24,12 +27,8 @@ The solution for evaluating Twitter data to perform better business decisions is
 
 ## Quick Demo 
 
-### Sentiment Tracking on Airbnb Brand
-<img src="https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/demo" alt="Sentiment Tracking" width="70%" height="70%">
-
 ### Real-time tracking topic trends
-Try this awesome interactive [web app](https://twitter-analysis-web-app.herokuapp.com) using local data and [data visuilization](https://nbviewer.jupyter.org/github/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Trend_Analysis_Complex.ipynb) in Jupyter Notebook.
-
+Try this interactive [data visuilization](https://nbviewer.jupyter.org/github/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Trend_Analysis_Complex.ipynb) in Jupyter Notebook.
 
 <img src="https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Figures/Complex.png" alt="Complex Dashboard" width="70%" height="70%">
 

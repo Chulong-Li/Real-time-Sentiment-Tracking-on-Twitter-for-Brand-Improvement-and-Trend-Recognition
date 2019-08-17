@@ -4,7 +4,7 @@ __Dive into the industry and get my hands dirty. That's why I start this self-mo
 
 ![Web App GIF](Figures/Web_App_GIF.gif)
 
-Try this awesome real-time interactive [web app](https://twitter-analysis-web-app.herokuapp.com) on Heroku server.
+Try this awesome [real-time interactive web app](https://twitter-analysis-web-app.herokuapp.com) on Heroku server.
 
 ## Inspiration
 The solution for evaluating Twitter data to perform better business decisions is to keep tracking all relevant Twitter content about a brand in real-time and perform analysis as topics or issues emerge. By monitoring brand mentions on Twitter, brands could inform enagement and deliver better experiences for their customers across the world.

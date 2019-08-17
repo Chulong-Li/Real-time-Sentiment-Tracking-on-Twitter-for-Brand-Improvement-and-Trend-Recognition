@@ -1,5 +1,6 @@
 # Real-time Twitter Sentiment Analysis for Brand Improvement and Topic Tracking
-Dive into the industry and get my hands dirty. That's why I start this self-motivated individual project.
+
+__Dive into the industry and get my hands dirty. That's why I start this self-motivated individual project.__
 
 <img src="https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Figures/Web_App.png" alt="Sentiment Tracking" width="70%" height="70%">
 
@@ -23,12 +24,14 @@ The solution for evaluating Twitter data to perform better business decisions is
 2. Perform exploratory data analysis with Pandas & Seaborn to explore the insights
 3. Connect with Plotly for real-time interactive dashboard based on time series
 4. Deploy the front-end web app using Dash on Heroku 
-  (__Note__: Only one dyno isn't able to support both web app and scraping streaming data at the same time, which needs to add another web dyno with additional cost beyond the free Heroku plan. Another solution is to use two threads which is also beyond the goal of this project)
-
 
 ## Quick Demo 
+## Interactive Web App
+[web app](https://twitter-analysis-web-app.herokuapp.com) has been deployed on Heroku server. However, to run it with streaming data, you need to deploy it locally.
 
-### Real-time tracking topic trends
+ (__Note__: Only one dyno isn't able to support both web app and scraping streaming data at the same time, which needs to add another web dyno with additional cost beyond the Heroku free plan. Another solution is to use two threads which is also beyond the scope of this project)
+
+### Real-time tracking topic trends in Jupyter Notebook
 Try this interactive [data visuilization](https://nbviewer.jupyter.org/github/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Trend_Analysis_Complex.ipynb) in Jupyter Notebook.
 
 <img src="https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Figures/Complex.png" alt="Complex Dashboard" width="70%" height="70%">

@@ -7,3 +7,6 @@ textblob
 mysql-connector-python
 geopy
 plotly
+nltk
+dash
+plotly

@@ -25,7 +25,7 @@ The solution for evaluating Twitter data to perform better business decisions is
 1. Extract streaming Twitter Data, preprocess data in Python, and load data into MySQL for storage
 2. Perform exploratory data analysis with Pandas & Seaborn to explore the insights
 3. Connect with Plotly for real-time interactive dashboard based on time series
-4. Deploy the real-time interactive front-end web app using Dash on Heroku 
+4. Deploy the real-time interactive front-end web app using Dash & Heroku PostgreSQL on Heroku server
 
 ## Quick Demo 
 

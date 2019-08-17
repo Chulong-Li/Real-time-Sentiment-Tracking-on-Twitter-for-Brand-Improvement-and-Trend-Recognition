@@ -2,7 +2,7 @@
 
 __Dive into the industry and get my hands dirty. That's why I start this self-motivated individual project.__
 
-<img src="https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Figures/Streaming_Web_App.png" alt="Sentiment Tracking" width="90%" height="90%">
+! [Web App GIF](Figures/Web_App_GIF.gif)
 
 Try this awesome real-time interactive [web app](https://twitter-analysis-web-app.herokuapp.com) on Heroku server.
 

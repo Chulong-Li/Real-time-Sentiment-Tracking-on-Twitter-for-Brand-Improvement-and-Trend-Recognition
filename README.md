@@ -26,12 +26,13 @@ The solution for evaluating Twitter data to perform better business decisions is
 4. Deploy the front-end web app using Dash on Heroku 
 
 ## Quick Demo 
-## Interactive Web App
-[web app](https://twitter-analysis-web-app.herokuapp.com) has been deployed on Heroku server. However, to run it with streaming data, you need to deploy it locally.
+
+### Interactive Web App on Heroku server
+[web app](https://twitter-analysis-web-app.herokuapp.com) has been deployed on Heroku. However, to run it with streaming data, you need to deploy it locally.
 
  (__Note__: Only one dyno isn't able to support both web app and scraping streaming data at the same time, which needs to add another web dyno with additional cost beyond the Heroku free plan. Another solution is to use two threads which is also beyond the scope of this project)
 
-### Real-time tracking topic trends in Jupyter Notebook
+### Real-time Twitter Sentiment Analysis in Jupyter Notebook
 Try this interactive [data visuilization](https://nbviewer.jupyter.org/github/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Trend_Analysis_Complex.ipynb) in Jupyter Notebook.
 
 <img src="https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Figures/Complex.png" alt="Complex Dashboard" width="70%" height="70%">

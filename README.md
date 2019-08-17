@@ -4,7 +4,7 @@ __Dive into the industry and get my hands dirty. That's why I start this self-mo
 
 <img src="https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Figures/Streaming_Web_App.png" alt="Sentiment Tracking" width="90%" height="90%">
 
-Try this awesome [web app](https://twitter-analysis-web-app.herokuapp.com) on Heroku server. Note: To run it with streaming data, you need to deploy it locally.
+Try this awesome real-time interactive [web app](https://twitter-analysis-web-app.herokuapp.com) on Heroku server.
 
 ## Inspiration
 The solution for evaluating Twitter data to perform better business decisions is to keep tracking all relevant Twitter content about a brand in real-time and perform analysis as topics or issues emerge. By monitoring brand mentions on Twitter, brands could inform enagement and deliver better experiences for their customers across the world.
@@ -17,23 +17,22 @@ The solution for evaluating Twitter data to perform better business decisions is
 
 ## Technical Approach - Version.2 ( ~ Aug 22)
 1. Build ETL pipelines based on stream processing using Kafka (In Progress)
-2. perform sentiment analysis using Spark Streaming (In Progress)
+2. Perform sentiment analysis using Spark Streaming (In Progress)
 
-## Orignal Development - Version.1 (Done)
+## Orignal Development - Version.1 (Done🎉)
 1. Extract streaming Twitter Data, preprocess data in Python, and load data into MySQL for storage
 2. Perform exploratory data analysis with Pandas & Seaborn to explore the insights
 3. Connect with Plotly for real-time interactive dashboard based on time series
-4. Deploy the front-end web app using Dash on Heroku 
+4. Deploy the real-time interactive front-end web app using Dash on Heroku 
 
 ## Quick Demo 
 
-### Interactive Web App on Heroku server
-[web app](https://twitter-analysis-web-app.herokuapp.com) has been deployed on Heroku. However, to run it with streaming data, you need to deploy it locally.
+### Real-time Interactive Web App on Heroku server
+[web app](https://twitter-analysis-web-app.herokuapp.com) has been deployed on Heroku.
 
- (__Note__: Only one dyno isn't able to support both web app and scraping streaming data at the same time, which needs to add another web dyno with additional cost beyond the Heroku free plan. Another solution is to use two threads which is also beyond the scope of this project)
 
 ### Real-time Twitter Sentiment Analysis in Jupyter Notebook
-Try this interactive [data visuilization](https://nbviewer.jupyter.org/github/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Trend_Analysis_Complex.ipynb) in Jupyter Notebook.
+Try this interactive [data visuilization](https://nbviewer.jupyter.org/github/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Trend_Analysis_Complex.ipynb) in Jupyter Notebook. To run with streaming data, you need to deploy it locally.
 
 <img src="https://github.com/Chulong-Li/Twitter-Data-Sentiment-Analysis/blob/master/Figures/Complex.png" alt="Complex Dashboard" width="70%" height="70%">
 

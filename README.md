@@ -1,9 +1,10 @@
 # Real-time Twitter Sentiment Analysis for Brand Improvement and Topic Tracking
 
-__Dive into the industry and get my hands dirty. That's why I start this self-motivated individual project.__
 
 ![Web App GIF](Figures/Web_App_GIF.gif)
+<br/>
 
+__Dive into the industry and get my hands dirty. That's why I start this self-motivated individual project.__
 Try this awesome [real-time interactive web app](https://twitter-analysis-web-app.herokuapp.com) on Heroku server.
 
 ## Inspiration

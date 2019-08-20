@@ -181,12 +181,12 @@ def update_graph_live(n):
                                     name="View Metrics",
                                     marker_colors=['rgba(184, 247, 212, 0.6)','rgba(255, 50, 50, 0.6)','rgba(131, 90, 241, 0.6)'],
                                     textinfo='value',
-                                    hole=.4)
+                                    hole=.6)
                             ],
                             'layout':{
                                 'showlegend':False,
                                 'annotations':[{
-                                    'text':'{} VIEWS IN LAST 30 MINS'.format(pos_num+neg_num+neu_num)
+                                    'text':'{0:.1f}k VIEWS'.format((pos_num+neg_num+neu_num)/1000)
                                 }]
                             }
 

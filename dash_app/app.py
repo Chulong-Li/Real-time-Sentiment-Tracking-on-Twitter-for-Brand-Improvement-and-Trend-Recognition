@@ -30,7 +30,7 @@ app.title = 'Real-Time Twitter Monitor'
 server = app.server
 
 app.layout = html.Div(children=[
-    html.H2('Real-time Twitter Sentiment Analysis for Brand Improvement and Topic Tracking', style={
+    html.H2('Real-time Twitter Sentiment Analysis for Brand Improvement and Topic Tracking (Updating)', style={
         'textAlign': 'center'
     }),
     html.H3('It\'s currently tracking \'Facebook\' brand on Twitter in Pacific Daylight Time (PDT).', style={
@@ -127,43 +127,68 @@ def update_graph_live(n):
     result = df.groupby([pd.Grouper(key='created_at', freq='10s'), 'polarity']).count().unstack(fill_value=0).stack().reset_index()
     result = result.rename(columns={"id_str": "Num of '{}' mentions".format(settings.TRACK_WORDS[0]), "created_at":"Time in UTC"})  
     time_series = result["Time in UTC"][result['polarity']==0].reset_index(drop=True)
+    neu_num = result["Num of '{}' mentions".format(settings.TRACK_WORDS[0])][result['polarity']==0].sum()
+    neg_num = result["Num of '{}' mentions".format(settings.TRACK_WORDS[0])][result['polarity']==-1].sum()
+    pos_num = result["Num of '{}' mentions".format(settings.TRACK_WORDS[0])][result['polarity']==1].sum()
 
     # Create the graph 
     children = [
-                dcc.Graph(
-                    id='crossfilter-indicator-scatter',
-                    figure={
-                        'data': [
-                            go.Scatter(
-                                x=time_series,
-                                y=result["Num of '{}' mentions".format(settings.TRACK_WORDS[0])][result['polarity']==0].reset_index(drop=True),
-                                name="Neutrals",
-                                opacity=0.8,
-                                mode='lines',
-                                line=dict(width=0.5, color='rgb(131, 90, 241)'),
-                                stackgroup='one' 
-                            ),
-                            go.Scatter(
-                                x=time_series,
-                                y=result["Num of '{}' mentions".format(settings.TRACK_WORDS[0])][result['polarity']==-1].reset_index(drop=True).apply(lambda x: -x),
-                                name="Negatives",
-                                opacity=0.8,
-                                mode='lines',
-                                line=dict(width=0.5, color='rgb(255, 50, 50)'),
-                                stackgroup='two' 
-                            ),
-                            go.Scatter(
-                                x=time_series,
-                                y=result["Num of '{}' mentions".format(settings.TRACK_WORDS[0])][result['polarity']==1].reset_index(drop=True),
-                                name="Positives",
-                                opacity=0.8,
-                                mode='lines',
-                                line=dict(width=0.5, color='rgb(184, 247, 212)'),
-                                stackgroup='three' 
-                            )
-                        ]
-                    }
-                )
+                html.Div([
+                    dcc.Graph(
+                        id='crossfilter-indicator-scatter',
+                        figure={
+                            'data': [
+                                go.Scatter(
+                                    x=time_series,
+                                    y=result["Num of '{}' mentions".format(settings.TRACK_WORDS[0])][result['polarity']==0].reset_index(drop=True),
+                                    name="Neutrals",
+                                    opacity=0.8,
+                                    mode='lines',
+                                    line=dict(width=0.5, color='rgb(131, 90, 241)'),
+                                    stackgroup='one' 
+                                ),
+                                go.Scatter(
+                                    x=time_series,
+                                    y=result["Num of '{}' mentions".format(settings.TRACK_WORDS[0])][result['polarity']==-1].reset_index(drop=True).apply(lambda x: -x),
+                                    name="Negatives",
+                                    opacity=0.8,
+                                    mode='lines',
+                                    line=dict(width=0.5, color='rgb(255, 50, 50)'),
+                                    stackgroup='two' 
+                                ),
+                                go.Scatter(
+                                    x=time_series,
+                                    y=result["Num of '{}' mentions".format(settings.TRACK_WORDS[0])][result['polarity']==1].reset_index(drop=True),
+                                    name="Positives",
+                                    opacity=0.8,
+                                    mode='lines',
+                                    line=dict(width=0.5, color='rgb(184, 247, 212)'),
+                                    stackgroup='three' 
+                                )
+                            ]
+                        }
+                    )
+                ], style={'width': '80%', 'display': 'inline-block', 'padding': '0 0 0 20'}),
+                
+                html.Div([
+                    dcc.Graph(
+                        id='pie-chart',
+                        figure={
+                            'data': [
+                                go.Pie(
+                                    labels=['Positives', 'Negatives', 'Neutrals'], 
+                                    values=[pos_num, neg_num, neu_num],
+                                    name="View Metrics",
+                                    marker_colors=['rgba(131, 90, 241, 0.6)','rgba(255, 50, 50, 0.6)','rgba(184, 247, 212, 0.6)'])
+                            ],
+                            'layout':{
+                                'showlegend':False
+                            }
+
+                        }
+                    )
+                ], style={'width': '19%', 'display': 'inline-block'}),
+
             ]
     return children
 

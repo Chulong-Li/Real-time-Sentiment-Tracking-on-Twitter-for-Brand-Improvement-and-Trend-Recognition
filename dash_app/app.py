@@ -125,8 +125,8 @@ def update_graph_live(n):
 
     # Clean and transform data to enable time series
     result = df.groupby([pd.Grouper(key='created_at', freq='10s'), 'polarity']).count().unstack(fill_value=0).stack().reset_index()
-    result = result.rename(columns={"id_str": "Num of '{}' mentions".format(settings.TRACK_WORDS[0]), "created_at":"Time in UTC"})  
-    time_series = result["Time in UTC"][result['polarity']==0].reset_index(drop=True)
+    result = result.rename(columns={"id_str": "Num of '{}' mentions".format(settings.TRACK_WORDS[0]), "created_at":"Time"})  
+    time_series = result["Time"][result['polarity']==0].reset_index(drop=True)
     neu_num = result["Num of '{}' mentions".format(settings.TRACK_WORDS[0])][result['polarity']==0].sum()
     neg_num = result["Num of '{}' mentions".format(settings.TRACK_WORDS[0])][result['polarity']==-1].sum()
     pos_num = result["Num of '{}' mentions".format(settings.TRACK_WORDS[0])][result['polarity']==1].sum()
@@ -179,10 +179,15 @@ def update_graph_live(n):
                                     labels=['Positives', 'Negatives', 'Neutrals'], 
                                     values=[pos_num, neg_num, neu_num],
                                     name="View Metrics",
-                                    marker_colors=['rgba(131, 90, 241, 0.6)','rgba(255, 50, 50, 0.6)','rgba(184, 247, 212, 0.6)'])
+                                    marker_colors=['rgba(184, 247, 212, 0.6)','rgba(255, 50, 50, 0.6)','rgba(131, 90, 241, 0.6)'],
+                                    textinfo='value',
+                                    hole=.4)
                             ],
                             'layout':{
-                                'showlegend':False
+                                'showlegend':False,
+                                'annotations':[{
+                                    'text':'{} VIEWS IN LAST 30 MINS'.format(pos_num+neg_num+neu_num)
+                                }]
                             }
 
                         }

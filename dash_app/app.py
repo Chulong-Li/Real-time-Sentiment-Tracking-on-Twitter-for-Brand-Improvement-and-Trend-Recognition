@@ -162,7 +162,7 @@ def update_graph_live(n):
                                 ]
                             }
                         )
-                    ], style={'width': '66%', 'display': 'inline-block', 'padding': '0 0 0 20'}),
+                    ], style={'width': '75%', 'display': 'inline-block', 'padding': '0 0 0 20'}),
                     
                     html.Div([
                         dcc.Graph(
@@ -175,14 +175,14 @@ def update_graph_live(n):
                                         name="View Metrics",
                                         marker_colors=['rgba(184, 247, 212, 0.6)','rgba(255, 50, 50, 0.6)','rgba(131, 90, 241, 0.6)'],
                                         textinfo='value',
-                                        hole=.6)
+                                        hole=.7)
                                 ],
                                 'layout':{
                                     'showlegend':False,
                                     'title':'Tweets In Last 30 MINS',
                                     'annotations':[
                                         dict(
-                                            text='{0:.1f}k'.format((pos_num+neg_num+neu_num)/1000),
+                                            text='{0:.1f}k<br>TWEETS'.format((pos_num+neg_num+neu_num)/1000),
                                             font=dict(
                                                 size=40
                                             ),
@@ -193,17 +193,13 @@ def update_graph_live(n):
 
                             }
                         )
-                    ], style={'width': '33%', 'display': 'inline-block'})
+                    ], style={'width': '25%', 'display': 'inline-block'})
                 ]),
-
-                #html.H6('Total views increased by', style={'marginLeft': 70}),
-                #html.H3('5.2%', style={'marginLeft': 10, 'display': 'inline-block'})
 
                 html.Div(
                     className='row',
                     children=[
                         html.Div(
-                            className='three columns',
                             children=[
                                 html.P('Total Views Increased By',
                                     style={
@@ -216,9 +212,9 @@ def update_graph_live(n):
                                     }
                                 )
                             ]
+
                         ),
                         html.Div(
-                            className='three columns',
                             children=[
                                 html.P('Daily User Engagement',
                                     style={
@@ -230,10 +226,13 @@ def update_graph_live(n):
                                         'fontSize': 40
                                     }
                                 )
-                            ]
+                            ], 
+                            style={
+                                'width': '25%', 
+                                'display': 'inline-block'
+                            }
                         ),
                         html.Div(
-                            className='three columns',
                             children=[
                                 html.P('Daily Tweets Posted',
                                     style={
@@ -245,18 +244,25 @@ def update_graph_live(n):
                                         'fontSize': 40
                                     }
                                 )
-                            ]
+                            ], 
+                            style={
+                                'width': '25%', 
+                                'display': 'inline-block'
+                            }
                         ),
 
                         html.Div(
-                            className='five columns',
                             children=[
-                                html.P("'It\'s currently tracking \'Facebook\' brand on Twitter in Pacific Daylight Time (PDT).'",
+                                html.P("Currently tracking \'Facebook\' brand on Twitter in Pacific Daylight Time (PDT).",
                                     style={
-                                        'fontSize': 30
+                                        'fontSize': 20
                                     }
                                 ),
-                            ]
+                            ], 
+                            style={
+                                'width': '25%', 
+                                'display': 'inline-block'
+                            }
                         ),
 
                     ],

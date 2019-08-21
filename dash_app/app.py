@@ -162,7 +162,7 @@ def update_graph_live(n):
                                 ]
                             }
                         )
-                    ], style={'width': '75%', 'display': 'inline-block', 'padding': '0 0 0 20'}),
+                    ], style={'width': '73%', 'display': 'inline-block', 'padding': '0 0 0 20'}),
                     
                     html.Div([
                         dcc.Graph(
@@ -175,14 +175,14 @@ def update_graph_live(n):
                                         name="View Metrics",
                                         marker_colors=['rgba(184, 247, 212, 0.6)','rgba(255, 50, 50, 0.6)','rgba(131, 90, 241, 0.6)'],
                                         textinfo='value',
-                                        hole=.7)
+                                        hole=.65)
                                 ],
                                 'layout':{
                                     'showlegend':False,
                                     'title':'Tweets In Last 30 MINS',
                                     'annotations':[
                                         dict(
-                                            text='{0:.1f}k<br>TWEETS'.format((pos_num+neg_num+neu_num)/1000),
+                                            text='{0:.1f}k'.format((pos_num+neg_num+neu_num)/1000),
                                             font=dict(
                                                 size=40
                                             ),
@@ -193,7 +193,7 @@ def update_graph_live(n):
 
                             }
                         )
-                    ], style={'width': '25%', 'display': 'inline-block'})
+                    ], style={'width': '27%', 'display': 'inline-block'})
                 ]),
 
                 html.Div(
@@ -211,7 +211,11 @@ def update_graph_live(n):
                                         'fontSize': 40
                                     }
                                 )
-                            ]
+                            ], 
+                            style={
+                                'width': '20%', 
+                                'display': 'inline-block'
+                            }
 
                         ),
                         html.Div(
@@ -228,7 +232,7 @@ def update_graph_live(n):
                                 )
                             ], 
                             style={
-                                'width': '25%', 
+                                'width': '20%', 
                                 'display': 'inline-block'
                             }
                         ),
@@ -239,28 +243,28 @@ def update_graph_live(n):
                                         'fontSize': 20
                                     }
                                 ),
-                                html.P('61.7k',
+                                html.P('172.5k',
                                     style={
                                         'fontSize': 40
                                     }
                                 )
                             ], 
                             style={
-                                'width': '25%', 
+                                'width': '20%', 
                                 'display': 'inline-block'
                             }
                         ),
 
                         html.Div(
                             children=[
-                                html.P("Currently tracking \'Facebook\' brand on Twitter in Pacific Daylight Time (PDT).",
+                                html.P("Currently tracking \"Facebook\" brand (NASDAQ: FB) on Twitter in Pacific Daylight Time (PDT).",
                                     style={
-                                        'fontSize': 20
+                                        'fontSize': 25
                                     }
                                 ),
                             ], 
                             style={
-                                'width': '25%', 
+                                'width': '40%', 
                                 'display': 'inline-block'
                             }
                         ),

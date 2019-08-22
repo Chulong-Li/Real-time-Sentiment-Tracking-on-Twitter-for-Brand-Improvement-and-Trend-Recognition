@@ -89,7 +89,7 @@ app.layout = html.Div(children=[
                     )                    
                 ]
             )                                                          
-        ]
+        ], style={'marginLeft': 70, 'fontSize': 16}
     ),
 
     dcc.Interval(
@@ -111,7 +111,7 @@ def update_graph_live(n):
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     query = "SELECT id_str, text, created_at, polarity, user_location FROM {}".format(settings.TABLE_NAME)
     df = pd.read_sql(query, con=conn)
-    conn.close()
+
 
     # Convert UTC into PDT
     df['created_at'] = pd.to_datetime(df['created_at']).apply(lambda x: x - datetime.timedelta(hours=7))
@@ -123,7 +123,19 @@ def update_graph_live(n):
     neu_num = result["Num of '{}' mentions".format(settings.TRACK_WORDS[0])][result['polarity']==0].sum()
     neg_num = result["Num of '{}' mentions".format(settings.TRACK_WORDS[0])][result['polarity']==-1].sum()
     pos_num = result["Num of '{}' mentions".format(settings.TRACK_WORDS[0])][result['polarity']==1].sum()
+    
+    # Loading back-up summary data
+    query = "SELECT daily_user_num, daily_tweets_num FROM Back_Up;"
+    back_up = pd.read_sql(query, con=conn)  
+    daily_tweets_num = back_up['daily_tweets_num'].iloc[0] + 10
+    #result.get_group(time_series[-1])["Num of '{}' mentions".format(settings.TRACK_WORDS[0])].sum()
 
+    cur = conn.cursor()
+    cur.execute("UPDATE Back_Up SET daily_tweets_num = {}".format(daily_tweets_num))
+    conn.commit()
+    cur.close()
+    conn.close()
+    #r
     # Create the graph 
     children = [
                 html.Div([
@@ -243,7 +255,7 @@ def update_graph_live(n):
                                         'fontSize': 20
                                     }
                                 ),
-                                html.P('172.5k',
+                                html.P(str(daily_tweets_num),
                                     style={
                                         'fontSize': 40
                                     }

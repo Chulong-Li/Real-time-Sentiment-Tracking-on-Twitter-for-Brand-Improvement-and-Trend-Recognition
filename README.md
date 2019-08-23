@@ -4,7 +4,7 @@
 [![Web App GIF](Figures/Web_App_GIF_Aug23.gif)](https://twitter-analysis-web-app.herokuapp.com)
 <br/>
 
-__Dive into the industry and get my hands dirty. That's why I start this self-motivated individual project.__
+__Dive into the industry and get my hands dirty. That's why I start this self-motivated independent project.__
 
 Try this awesome [real-time interactive web app](https://twitter-analysis-web-app.herokuapp.com) on Heroku server.
 

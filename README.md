@@ -17,11 +17,11 @@ The solution for evaluating Twitter data to perform better business decisions is
 - More than 65.6% users will write the locations in their profile, although very few of them don't live on Earth according to that fact.
 - The numbers of positive and negative tweets are relatively close and stay low compared with neural tweet number. Unless emergency events happen, lines won't fluctuate acutely.
 
-## Technical Approach - Version.2 ( ~ Aug 28)
+## Technical Approach - Version 2 ( ~ Aug 28)
 1. Build ETL pipelines based on stream processing using Kafka (In Progress)
 2. Perform sentiment analysis using Spark Streaming (In Progress)
 
-## Orignal Development - Version.1 (Refining🎉)
+## Orignal Development - Version 1.2 (Done🎉)
 1. Extract streaming Twitter Data, preprocess data in Python, and load data into MySQL for storage
 2. Perform exploratory data analysis with Pandas & Seaborn to explore the insights
 3. Connect with Plotly for real-time interactive dashboard based on time series

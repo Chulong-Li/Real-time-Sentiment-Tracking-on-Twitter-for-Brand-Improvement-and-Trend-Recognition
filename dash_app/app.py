@@ -127,15 +127,24 @@ def update_graph_live(n):
     # Loading back-up summary data
     query = "SELECT daily_user_num, daily_tweets_num FROM Back_Up;"
     back_up = pd.read_sql(query, con=conn)  
-    daily_tweets_num = back_up['daily_tweets_num'].iloc[0] + 10
-    #result.get_group(time_series[-1])["Num of '{}' mentions".format(settings.TRACK_WORDS[0])].sum()
-
+    daily_tweets_num = back_up['daily_tweets_num'].iloc[0] + result[-3:]["Num of '{}' mentions".format(settings.TRACK_WORDS[0])].sum()
     cur = conn.cursor()
-    cur.execute("UPDATE Back_Up SET daily_tweets_num = {}".format(daily_tweets_num))
+
+    PDT_now = datetime.datetime.now() - datetime.timedelta(hours=7)
+    if PDT_now.strftime("%H%M")=='0000':
+        cur.execute("UPDATE Back_Up SET daily_tweets_num = 0;")
+    else:
+        cur.execute("UPDATE Back_Up SET daily_tweets_num = {};".format(daily_tweets_num))
     conn.commit()
     cur.close()
     conn.close()
-    #r
+
+    # Percentage Number of Tweets changed in Last 10 mins
+    min10 = datetime.datetime.now() - datetime.timedelta(hours=7, minutes=10)
+    min20 = datetime.datetime.now() - datetime.timedelta(hours=7, minutes=20)
+    count_now = df[df['created_at'] > min10].count()
+    count_before = df[ (min20 < df['created_at']) & (df['created_at'] < min10)]
+    percent = (count_now-count_before)/count_before*100
     # Create the graph 
     children = [
                 html.Div([
@@ -194,7 +203,7 @@ def update_graph_live(n):
                                     'title':'Tweets In Last 30 MINS',
                                     'annotations':[
                                         dict(
-                                            text='{0:.1f}k'.format((pos_num+neg_num+neu_num)/1000),
+                                            text='{0:.1f}K'.format((pos_num+neg_num+neu_num)/1000),
                                             font=dict(
                                                 size=40
                                             ),
@@ -213,12 +222,12 @@ def update_graph_live(n):
                     children=[
                         html.Div(
                             children=[
-                                html.P('Total Views Increased By',
+                                html.P('Tweets Per 10 Mins Increased By',
                                     style={
                                         'fontSize': 20
                                     }
                                 ),
-                                html.P('5.2%',
+                                html.P('{0:.2}%'.format(percent),
                                     style={
                                         'fontSize': 40
                                     }
@@ -232,12 +241,12 @@ def update_graph_live(n):
                         ),
                         html.Div(
                             children=[
-                                html.P('Daily User Engagement',
+                                html.P('Active Users Today',
                                     style={
                                         'fontSize': 20
                                     }
                                 ),
-                                html.P('32k',
+                                html.P('32K',
                                     style={
                                         'fontSize': 40
                                     }
@@ -250,12 +259,12 @@ def update_graph_live(n):
                         ),
                         html.Div(
                             children=[
-                                html.P('Daily Tweets Posted',
+                                html.P('Tweets Posted Today',
                                     style={
                                         'fontSize': 20
                                     }
                                 ),
-                                html.P(str(daily_tweets_num),
+                                html.P('{0:.1f}K'.format(daily_tweets_num/1000),
                                     style={
                                         'fontSize': 40
                                     }

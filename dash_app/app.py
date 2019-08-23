@@ -30,13 +30,26 @@ app.title = 'Real-Time Twitter Monitor'
 server = app.server
 
 app.layout = html.Div(children=[
-    html.H2('Real-time Twitter Sentiment Analysis for Brand Improvement and Topic Tracking (Updating)', style={
+    html.H2('Real-time Twitter Sentiment Analysis for Brand Improvement and Topic Tracking ', style={
         'textAlign': 'center'
     }),
+    html.H4('(Last updated: Aug 23, 2019)', style={
+        'textAlign': 'right'
+    }),
+    
 
     html.Div(id='live-update-graph'),
     html.Div(id='live-update-graph-bottom'),
 
+    # Author's Words
+    html.Div(
+        className='row',
+        children=[ 
+            dcc.Markdown("__Author's Words__: Dive into the industry and get my hands dirty. That's why I start this self-motivated independent project. If you like it, I would appreciate for starring⭐️ my project on [GitHub](https://github.com/Chulong-Li/Real-time-Sentiment-Tracking-on-Twitter-for-Brand-Improvement-and-Trend-Recognition)!✨"),
+        ],style={'width': '35%', 'marginLeft': 70}
+    ),
+    html.Br(),
+    
     # ABOUT ROW
     html.Div(
         className='row',
@@ -81,7 +94,7 @@ app.layout = html.Div(children=[
                 className='three columns',
                 children=[
                     html.P(
-                    'Developer:'
+                    'Author:'
                     ),
                     html.A(
                         'Chulong Li',
@@ -109,7 +122,7 @@ def update_graph_live(n):
     # Loading data from Heroku PostgreSQL
     DATABASE_URL = os.environ['DATABASE_URL']
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-    query = "SELECT id_str, text, created_at, polarity, user_location FROM {}".format(settings.TABLE_NAME)
+    query = "SELECT id_str, text, created_at, polarity, user_location, user_followers_count FROM {}".format(settings.TABLE_NAME)
     df = pd.read_sql(query, con=conn)
 
 
@@ -120,30 +133,34 @@ def update_graph_live(n):
     result = df.groupby([pd.Grouper(key='created_at', freq='10s'), 'polarity']).count().unstack(fill_value=0).stack().reset_index()
     result = result.rename(columns={"id_str": "Num of '{}' mentions".format(settings.TRACK_WORDS[0]), "created_at":"Time"})  
     time_series = result["Time"][result['polarity']==0].reset_index(drop=True)
-    neu_num = result["Num of '{}' mentions".format(settings.TRACK_WORDS[0])][result['polarity']==0].sum()
-    neg_num = result["Num of '{}' mentions".format(settings.TRACK_WORDS[0])][result['polarity']==-1].sum()
-    pos_num = result["Num of '{}' mentions".format(settings.TRACK_WORDS[0])][result['polarity']==1].sum()
+
+    min10 = datetime.datetime.now() - datetime.timedelta(hours=7, minutes=10)
+    min20 = datetime.datetime.now() - datetime.timedelta(hours=7, minutes=20)
+
+    neu_num = result[result['Time']>min10]["Num of '{}' mentions".format(settings.TRACK_WORDS[0])][result['polarity']==0].sum()
+    neg_num = result[result['Time']>min10]["Num of '{}' mentions".format(settings.TRACK_WORDS[0])][result['polarity']==-1].sum()
+    pos_num = result[result['Time']>min10]["Num of '{}' mentions".format(settings.TRACK_WORDS[0])][result['polarity']==1].sum()
     
     # Loading back-up summary data
-    query = "SELECT daily_user_num, daily_tweets_num FROM Back_Up;"
+    query = "SELECT daily_user_num, daily_tweets_num, impressions FROM Back_Up;"
     back_up = pd.read_sql(query, con=conn)  
-    daily_tweets_num = back_up['daily_tweets_num'].iloc[0] + result[-3:]["Num of '{}' mentions".format(settings.TRACK_WORDS[0])].sum()
+    daily_tweets_num = back_up['daily_tweets_num'].iloc[0] + result[-6:-3]["Num of '{}' mentions".format(settings.TRACK_WORDS[0])].sum()
+    daily_impressions = back_up['impressions'].iloc[0] + df[df['created_at'] > (datetime.datetime.now() - datetime.timedelta(hours=7, seconds=10))]['user_followers_count'].sum()
     cur = conn.cursor()
 
     PDT_now = datetime.datetime.now() - datetime.timedelta(hours=7)
     if PDT_now.strftime("%H%M")=='0000':
-        cur.execute("UPDATE Back_Up SET daily_tweets_num = 0;")
+        cur.execute("UPDATE Back_Up SET daily_tweets_num = 0, impressions = 0;")
     else:
-        cur.execute("UPDATE Back_Up SET daily_tweets_num = {};".format(daily_tweets_num))
+        cur.execute("UPDATE Back_Up SET daily_tweets_num = {}, impressions = {};".format(daily_tweets_num, daily_impressions))
     conn.commit()
     cur.close()
     conn.close()
 
     # Percentage Number of Tweets changed in Last 10 mins
-    min10 = datetime.datetime.now() - datetime.timedelta(hours=7, minutes=10)
-    min20 = datetime.datetime.now() - datetime.timedelta(hours=7, minutes=20)
-    count_now = df[df['created_at'] > min10].count()
-    count_before = df[ (min20 < df['created_at']) & (df['created_at'] < min10)]
+
+    count_now = df[df['created_at'] > min10]['id_str'].count()
+    count_before = df[ (min20 < df['created_at']) & (df['created_at'] < min10)]['id_str'].count()
     percent = (count_now-count_before)/count_before*100
     # Create the graph 
     children = [
@@ -200,7 +217,7 @@ def update_graph_live(n):
                                 ],
                                 'layout':{
                                     'showlegend':False,
-                                    'title':'Tweets In Last 30 MINS',
+                                    'title':'Tweets In Last 10 Mins',
                                     'annotations':[
                                         dict(
                                             text='{0:.1f}K'.format((pos_num+neg_num+neu_num)/1000),
@@ -216,18 +233,18 @@ def update_graph_live(n):
                         )
                     ], style={'width': '27%', 'display': 'inline-block'})
                 ]),
-
+                
                 html.Div(
                     className='row',
                     children=[
                         html.Div(
                             children=[
-                                html.P('Tweets Per 10 Mins Increased By',
+                                html.P('Tweets/10 Mins Changed By',
                                     style={
-                                        'fontSize': 20
+                                        'fontSize': 17
                                     }
                                 ),
-                                html.P('{0:.2}%'.format(percent),
+                                html.P('{0:.2f}%'.format(percent) if percent <= 0 else '+{0:.2f}%'.format(percent),
                                     style={
                                         'fontSize': 40
                                     }
@@ -241,12 +258,15 @@ def update_graph_live(n):
                         ),
                         html.Div(
                             children=[
-                                html.P('Active Users Today',
+                                html.P('Potential Impressions Today',
                                     style={
-                                        'fontSize': 20
+                                        'fontSize': 17
                                     }
                                 ),
-                                html.P('32K',
+                                html.P('{0:.1f}K'.format(daily_impressions/1000) \
+                                        if daily_impressions < 1000000 else \
+                                            ('{0:.1f}M'.format(daily_impressions/1000000) if daily_impressions < 1000000000 \
+                                            else '{0:.1f}B'.format(daily_impressions/1000000000)),
                                     style={
                                         'fontSize': 40
                                     }
@@ -261,7 +281,7 @@ def update_graph_live(n):
                             children=[
                                 html.P('Tweets Posted Today',
                                     style={
-                                        'fontSize': 20
+                                        'fontSize': 17
                                     }
                                 ),
                                 html.P('{0:.1f}K'.format(daily_tweets_num/1000),
@@ -409,7 +429,7 @@ def update_graph_bottom_live(n):
                                 ) 
                             ],
                             'layout': {
-                                'title': "Streaming Tweet Geo-Distribution",
+                                'title': "Geographic Segmentation for US",
                                 'geo':{'scope':'usa'}
                             }
                         }

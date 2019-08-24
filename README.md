@@ -88,5 +88,5 @@ Note: Since streaming process is always on, press STOP button to finsih.
 - Plotly doesn't have well-document on reference making customize dashboard much harder
 - More challenges on the way, but Google, StackOverFlow, Towards Data Science, and GitHub will always be your best friends
 
-## What's next?
-In the future, I'll write a tech blog on Towards Data Science to elaborate details under the hood. So stay tuned.
+## Tech Blog (In Progress)
+I'm writing a tech blog and will public it on Towards Data Science to elaborate details under the hood. So stay tuned!

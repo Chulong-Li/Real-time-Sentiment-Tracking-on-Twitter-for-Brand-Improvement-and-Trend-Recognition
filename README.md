@@ -17,7 +17,7 @@ The solution for evaluating Twitter data to perform better business decisions is
 - More than 65.6% users will write the locations in their profile, although very few of them don't live on Earth according to that fact.
 - The numbers of positive and negative tweets are relatively close and stay low compared with neural tweet number. Unless emergency events happen, lines won't fluctuate acutely.
 
-## Technical Approach - Version 2 ( ~ Aug 28)
+## Technical Approach - Version 2 ( ~ Sep 16)
 1. Build ETL pipelines based on stream processing using Kafka (In Progress)
 2. Perform sentiment analysis using Spark Streaming (In Progress)
 

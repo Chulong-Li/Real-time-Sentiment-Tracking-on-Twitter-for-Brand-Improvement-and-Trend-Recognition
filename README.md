@@ -6,12 +6,12 @@
 
 __Dive into the industry and get my hands dirty. That's why I start this self-motivated independent project.__
 
-Try this awesome __[Real-Time Twitter Monitoring System here](https://twitter-analysis-web-app.herokuapp.com)__ on Heroku server.
+Try this awesome __[Real-Time Twitter Monitoring System here](https://twitter-analysis-web-app.herokuapp.com)__ on Heroku server. Read a series of related articles below:
 
 - [Chapter 1](http://bit.ly/2Zohn01): Collecting Twitter Data using Streaming Twitter API with Tweepy, MySQL, & Python
 - [Chapter 2](http://bit.ly/2PzXG5M): Twitter Sentiment Analysis and Interactive Data Visualization using RE, TextBlob, NLTK, and Plotly
 - [Chapter 3](http://bit.ly/2msOUbR): Deploy a Real-time Twitter Analytical Web App on Heroku using Dash & Plotly in Python
-- Chapter 4 (Optional): Parallelize Streaming Twitter Sentiment Analysis using Scala, Kafka and Spark Streaming
+- Chapter 4 (In Progress): Parallelize Streaming Twitter Sentiment Analysis using Scala, Kafka and Spark Streaming
 
 ## Inspiration
 The solution for evaluating Twitter data to perform better business decisions is to keep tracking all relevant Twitter content about a brand in real-time, perform analysis as topics or issues emerge, and detect anomaly with alert. By monitoring brand mentions on Twitter, brands could inform enagement and deliver better experiences for their customers across the world.
@@ -86,6 +86,10 @@ Run ```Trend_Analysis_Complex``` to track topic trends on Twitter after ```Main.
 
 Note: Since streaming process is always on, press STOP button to finsih.
 
+## Dash Web Application
+All things related to Dash App is placed in ```dash_app``` folder.
+
+
 ## Challenges
 - Unstructured tweet texts may contain messy code and emoji characters
 - Some brands may take a long time to collection enough data to perform analysis on issue emerging since they target specify groups of people
@@ -93,5 +97,3 @@ Note: Since streaming process is always on, press STOP button to finsih.
 - Plotly doesn't have well-document on reference making customize dashboard much harder
 - More challenges on the way, but Google, StackOverFlow, Towards Data Science, and GitHub will always be your best friends
 
-## Tech Blog (In Progress)
-I'm writing a tech blog and will public it on Towards Data Science to elaborate details under the hood. So stay tuned!

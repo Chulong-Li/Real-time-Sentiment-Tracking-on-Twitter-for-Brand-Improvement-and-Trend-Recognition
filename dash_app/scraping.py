@@ -116,7 +116,7 @@ cur.close()
 '''
 
 auth  = tweepy.OAuthHandler(credentials.API_KEY, credentials.API_SECRET_KEY)
-auth.set_access_token(credentials.ACCESS_TOEKN, credentials.ACCESS_TOKEN_SECRET)
+auth.set_access_token(credentials.ACCESS_TOKEN, credentials.ACCESS_TOKEN_SECRET)
 api = tweepy.API(auth)
 
 myStreamListener = MyStreamListener()
